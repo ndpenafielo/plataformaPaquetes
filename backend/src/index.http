@@ -1,0 +1,45 @@
+# POST http://localhost:3900/api/save HTTP/1.1
+# Content-Type: application/json
+
+# {
+#     "noServicio": 1,
+#     "hora": "20:30",
+#     "estado": "entregado",
+#     "medidasLargo": 1,
+#     "medidasAncho": 1,
+#     "medidasAlto": 1,
+#     "medidasPeso": 20,
+#     "direcionRecog": "calle falsa 123",
+#     "ciudadRecog": "springfield",
+#     "nombreDest": "Homero",
+#     "docDest": "1234",
+#     "direccionEntr": "calle aqui no mas 1",
+#     "ciudadEntr": "New York"
+# }
+
+
+# GET http://localhost:3900/api/paquetes HTTP/1.1
+# Content-Type: application/json
+
+
+
+# PUT http://localhost:3900/api/update/6373eebebe0287f0e737f84b HTTP/1.1
+# Content-Type: application/json
+
+# {
+#     "noServicio": 2,
+#     "estado": "completado"
+# }
+
+###
+# DELETE http://localhost:3900/api/delete/6373eebebe0287f0e737f84b HTTP/1.1
+# Content-Type: application/json
+
+# ###
+# patch http://localhost:3000/api/cursos/programacion/2 HTTP/1.1
+# Content-Type: application/json
+
+# {
+#     "titulo": "python intermedio con pryectos",
+#     "vistas": 123996
+# }
