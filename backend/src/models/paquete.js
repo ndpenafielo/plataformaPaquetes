@@ -7,7 +7,6 @@ var paqueteSchema = new Schema({
 
     noServicio: Number,
     fecha: {type: Date, default:Date.now},
-    hora: String,
     estado: String,
     medidasLargo: Number,
     medidasAncho: Number,
