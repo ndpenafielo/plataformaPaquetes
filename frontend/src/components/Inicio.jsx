@@ -8,7 +8,7 @@ const Inicio = () =>{
   const url = Global.url;
 
   const [usuario, setUsuario] = useState({
-    usuario: null,
+    username: null,
     password: null
   });
 
@@ -20,7 +20,7 @@ const Inicio = () =>{
 
   const changeState = () => {
     setUsuario({
-      usuario: userRef.current.value,
+      username: userRef.current.value,
       password: pwRef.current.value,
 
     });
@@ -32,10 +32,17 @@ const Inicio = () =>{
     //evitamos que al recibir datos se recarge la pantalla
     e.preventDefault();
     changeState();
+    var bandera = true;
     //petición http con POST
-    axios.post(url + 'login', usuario).then( res => {
-      setRedirect(true);
-      console.log(res.data);
+    axios.post(url + 'login', usuario).catch( error => {
+      if (error.response){
+        console.log(error.response.data);
+        console.log(error.response.status);
+        alert(error.response.data);
+        bandera = false
+      }
+    }).then( res => {
+      setRedirect(bandera);
     })
   }
 
@@ -57,12 +64,10 @@ const Inicio = () =>{
               <input type="text" className="form-control" id="usuario" name="usuario" ref={userRef} onChange={changeState} required/>
             </div>
 
-
             <div className='mb-3'>
               <label>Password</label>
               <input type="password" className="form-control" id="password" name="password" ref={pwRef} onChange={changeState} required />
             </div>
-
 
             <div className='mb-3'>
               <input className="btn btn-primary" type="submit" id="create" value="Iniciar Sesión" />

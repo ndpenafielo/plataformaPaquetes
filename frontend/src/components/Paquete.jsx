@@ -1,6 +1,7 @@
 import React from "react";
+import {NavLink} from "react-router-dom"
 
-const Paquete = ({id, paqueteData, delPaquete}) => {
+const Paquete = ({id, paqueteData, delPaquete, updPaquete}) => {
 
   const { noServicio, fecha, estado, medidasLargo, medidasAncho, medidasAlto, medidasPeso, direcionRecog, ciudadRecog, nombreDest, docDest, direccionEntr, ciudadEntr } = paqueteData;
   const formatDate = (date) => {
@@ -15,8 +16,8 @@ const Paquete = ({id, paqueteData, delPaquete}) => {
     delPaquete(id);
   }
 
-  const mod = () => {
-
+  const upd = () => {
+    updPaquete(id, true);
   }
 
   return(
@@ -26,22 +27,22 @@ const Paquete = ({id, paqueteData, delPaquete}) => {
           <h3 className="card-title">Numero de servicio: {noServicio}</h3>
         </div>
         <div className="card-body">
-          <label className="card-text text-start">Estado: {estado}</label>
+          <label className="card-text text-start"><b>Estado:</b> {estado}</label>
           <ul className="list-group list-group-flush">
-            <li className="list-pub list-group-item">Fecha: {formatDate(fecha)} Hora: {formatHour(fecha)}</li>
-            <li className="list-pub list-group-item">medidas:</li>
-            <li className="list-pub list-group-item">Largo: {medidasLargo} - Ancho: {medidasAncho} - Alto: {medidasAlto} - Peso: {medidasPeso}</li>
-            <li className="list-pub list-group-item">Direción Recogida: {direcionRecog}</li>
-            <li className="list-pub list-group-item">Ciudad Recogida: {ciudadRecog}</li>
-            <li className="list-pub list-group-item">Nombre Destinatario: {nombreDest}</li>
-            <li className="list-pub list-group-item">Documento Destinatario: {docDest}</li>
-            <li className="list-pub list-group-item">Dirección Entrega: {direccionEntr}</li>
-            <li className="list-pub list-group-item">Ciudad Entrega: {ciudadEntr}</li>
+            <li className="list-pub list-group-item"><b>Fecha: </b> {formatDate(fecha)} <b>Hora:</b> {formatHour(fecha)}</li>
+            <li className="list-pub list-group-item"><b>Medidas</b></li>
+            <li className="list-pub list-group-item"> <b>Largo: </b> {medidasLargo} - <b> Ancho: </b>{medidasAncho} - <b>Alto:</b> {medidasAlto} - <b> Peso:</b> {medidasPeso}</li>
+            <li className="list-pub list-group-item"> <b> Direción Recogida:</b> {direcionRecog}</li>
+            <li className="list-pub list-group-item"><b>Ciudad Recogida:</b> {ciudadRecog}</li>
+            <li className="list-pub list-group-item"><b>Nombre Destinatario: </b>{nombreDest}</li>
+            <li className="list-pub list-group-item"><b>Documento Destinatario:</b> {docDest}</li>
+            <li className="list-pub list-group-item"><b>Dirección Entrega:</b> {direccionEntr}</li>
+            <li className="list-pub list-group-item"><b>Ciudad Entrega: </b>{ciudadEntr}</li>
           </ul>
         </div>
         <div className="card-footer">
           <button className="btn btn-danger btn-sm" type="button" onClick={del}>Eliminar</button>
-          <button className="btn btn-warning btn-sm" type="button" onClick={mod}>Modificar</button>
+          <button className="btn btn-warning btn-sm" type="button" onClick={upd}>Modificar</button>
         </div>
       </div>
 

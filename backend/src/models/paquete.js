@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var paqueteSchema = new Schema({
 
-    noServicio: Number,
+    noServicio: {type: Number, required: true, unique: true},
     fecha: {type: Date, default:Date.now},
     estado: String,
     medidasLargo: Number,

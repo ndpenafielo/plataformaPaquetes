@@ -8,10 +8,11 @@ const Registro = () =>{
   const url = Global.url;
 
   const [nuevoUsuario, setNuevoUsuario] = useState({
-    nombre: null,
-    correo: null,
-    usuario: null,
-    password: null
+    name: null,
+    email: null,
+    username: null,
+    password: null,
+
   });
 
   const [redirect, setRedirect] = useState(false);
@@ -20,15 +21,16 @@ const Registro = () =>{
   let correoRef = React.createRef();
   let userRef = React.createRef();
   let pwRef = React.createRef();
+  let pwConRef = React.createRef();
 
 
 
   const changeState = () => {
     setNuevoUsuario({
-      nombre: nombreRef.current.value,
-      correo: correoRef.current.value,
-      usuario: userRef.current.value,
-      password: pwRef.current.value
+      name: nombreRef.current.value,
+      email: correoRef.current.value,
+      username: userRef.current.value,
+      password: pwRef.current.value,
 
     });
 
@@ -65,7 +67,7 @@ const Registro = () =>{
             </div>
             <div className='mb-3'>
               <label>Correo</label>
-              <input type="text" className="form-control" id="correo" name="correo" ref={correoRef} onChange={changeState} required/>
+              <input type="email" className="form-control" id="correo" name="correo" ref={correoRef} onChange={changeState} required/>
             </div>
             <div className='mb-3'>
               <label>Usuario</label>
@@ -74,6 +76,10 @@ const Registro = () =>{
             <div className='mb-3'>
               <label>Password</label>
               <input type="password" className="form-control" id="password" name="password" ref={pwRef} onChange={changeState} required />
+            </div>
+            <div className='mb-3'>
+              <label>Confirmar Password</label>
+              <input type="password" className="form-control" id="conf-password" name="conf-password" ref={pwConRef} onChange={changeState} required />
             </div>
 
             <div className='mb-3'>

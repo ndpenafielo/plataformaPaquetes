@@ -1,26 +1,26 @@
 'use strict'
 
 const express = require('express');
+const session = require('express-session')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
 const app = express();
+const bcrypt = require ('bcrypt');
+
 
 const PORT = 3900;
 
-
 const user = 'nicolas';
 const password = 'nico1234';
-const dataB = 'paquetes'
-var url = `mongodb+srv://${user}:${password}@plataformapaquetes.dhgltxx.mongodb.net/${dataB}retryWrites=true&w=majority`;
+const dataB = 'appPaquetes'
+var url = `mongodb+srv://${user}:${password}@plataformapaquetes.dhgltxx.mongodb.net/${dataB}`;
 
 mongoose.Promise = global.Promise;
 
-var paquete_routes = require('./routes/paquete');
+var routes = require('./routes/routes');
 
 //cargamos body-parser como middleware
 app.use(bodyParser.urlencoded({extended: false}));
-
 //cualquier petición es convertida en json
 app.use(bodyParser.json());
 
@@ -32,7 +32,7 @@ app.use((req,res,next) => {
     next();
 })
 
-app.use('/api', paquete_routes);
+app.use('/api', routes);
 
 mongoose.connect(url, {useNewUrlParser: true}).then(() => {
     console.log("Base de datos conectada")

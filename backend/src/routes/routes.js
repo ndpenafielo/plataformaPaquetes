@@ -2,6 +2,7 @@
 
 var express = require('express')
 var Paquete = require('../controllers/paquete')
+var User = require('../controllers/user')
 
 //llamamos al objeto router de express
 var router = express.Router();
@@ -12,7 +13,10 @@ router.get('/paquetes', Paquete.getPaquetes);
 
 router.delete('/delete/:id', Paquete.delete);
 
-//router.put('/update/:id-:noServicio-:fecha-:hora-:estado-:medidasLargo-:medidasAncho-:medidasAlto-:medidasPeso-:direcionRecog-:ciudadRecog-:nombreDest-:docDest-:direccionEntr-:ciudadEntr'),Paquete.update;
-router.put('/update/:id'),Paquete.update;
+router.post('/update/:id', Paquete.update);
+
+router.post('/register', User.register);
+
+router.post('/login', User.login);
 
 module.exports = router;

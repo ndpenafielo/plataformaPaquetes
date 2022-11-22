@@ -4,7 +4,7 @@ var Paquete = require('../models/paquete');
 
 //creamos un objeto para disponer de todos metodos de ruta
 
-var controller = {
+var controllerPaquete = {
     //Metodo para crear paquete
     save: (req,res) => {
         var params = req.body;
@@ -96,45 +96,24 @@ var controller = {
     },
 
 
-    //Metodo para eliminar un paquete
+    //Metodo para actualizar un paquete
     update: (req,res) => {
-
-
         var paqueteId = req.params.id;
-        var params = req.body;
-
-        // var newnoServicio = req.params.noServicio;
-        // var newfecha = req.params.fecha;
-        // var newhora = req.params.hora;
-        // var newestado = req.params.estado;
-        // var newmedidasLargo = req.params.medidasLargo;
-        // var newmedidasAncho = req.params.medidasAncho;
-        // var newmedidasAlto = req.params.medidasAlto;
-        // var newmedidasPeso = req.params.medidasPeso;
-        // var newdirecionRecog = req.params.direcionRecog;
-        // var newciudadRecog = req.params.ciudadRecog;
-        // var newnombreDest = req.params.nombreDest;
-        // var newdocDest = req.params.docDest;
-        // var newdireccionEntr = req.params.direccionEntr;
-        // var newciudadEntr = req.params.ciudadEntr;
 
         Paquete.findByIdAndUpdate({_id: paqueteId}, {
 
-            // paquete.noServicio = params.noServicio;
-            // paquete.hora = params.hora;
-            // paquete.estado = params.estado;
-            // paquete.medidasLargo = params.medidasLargo;
-            // paquete.medidasAncho = params.medidasAncho;
-            // paquete.medidasAlto = params.medidasAlto;
-            // paquete.medidasPeso = params.medidasPeso;
-            // paquete.direcionRecog = params.direcionRecog;
-            // paquete.ciudadRecog = params.ciudadRecog;
-            // paquete.nombreDest = params.nombreDest;
-            // paquete.docDest = params.docDest;
-            // paquete.direccionEntr = params.direccionEntr;
-            // paquete.ciudadEntr = params.ciudadEntr;
-            noServicio: params.noServicio,
-            estado: params.estado,
+            noServicio: req.body.noServicio,
+            estado: req.body.estado,
+            medidasLargo: req.body.medidasLargo,
+            medidasAncho: req.body.medidasAncho,
+            medidasAlto: req.body.medidasAlto,
+            medidasPeso: req.body.medidasPeso,
+            direcionRecog: req.body.direcionRecog,
+            ciudadRecog: req.body.ciudadRecog,
+            nombreDest: req.body.nombreDest,
+            docDest: req.body.docDest,
+            direccionEntr: req.body.direccionEntr,
+            ciudadEntr: req.body.ciudadEntr
 
         },(err, paqueteUpdated) => {
 
@@ -153,7 +132,7 @@ var controller = {
             }
 
             return res.status(200).send({
-                status: "success",
+                status: "Success Updating",
                 paqueteUpdated
             });
 
@@ -161,4 +140,4 @@ var controller = {
     }
 }
 
-module.exports = controller;
+module.exports = controllerPaquete;

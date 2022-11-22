@@ -3,8 +3,12 @@ import logo from "../assets/images/logo.png"
 import {NavLink} from "react-router-dom"
 
 const Header = () => {
+
+
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
             <div className="container">
                 <NavLink to="/" className="navbar-brand">
                     <img className="App-logo" src={logo} alt="logo" width="80"/>

@@ -2,17 +2,18 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Global from "../Global";
 import Paquete from "./Paquete";
+import Update from "./Update";
 
 
 const Paquetes = () => {
 
   const [paquetes, setPaquetes] = useState([]);
+  const [paqOne, setPaqOne] = useState([]);
+  const [bandera, setBandera] = useState(false);
   const url = Global.url;
 
   useEffect( () => {
     getPaquetes();
-    console.log(paquetes);
-
   }, [paquetes.length]);
 
   const getPaquetes = () => {
@@ -28,25 +29,47 @@ const Paquetes = () => {
     });
   }
 
+  const updatePaquete = (id) => {
+    const paque = paquetes[id];
+    setPaqOne(paque)
+    setBandera(true)
+  }
+
+  const updateBool = (band) => {
+     setBandera(false)
+  }
+
   return (
+
     <div className="ordenes">
       <h1 className="mt-5">Ordenes</h1>
       <div className="container mt-3">
         <div className="row row-cols-1 rows-cols-md-2 row-cols-lg-2">
           {
-            paquetes.length > 0 ? (
-              paquetes.map((paquete, i) => {
-                return(
-                  <Paquete
-                    key={i}
-                    id={i}
-                    paqueteData={paquete}
-                    delPaquete={deletePaquete}
-                  />
-                );
-              })
+            !bandera ? (
+              paquetes.length > 0 ?  (
+                paquetes.map((paquete, i) => {
+                  return(
+                    <Paquete
+                      key={i}
+                      id={i}
+                      paqueteData={paquete}
+                      delPaquete={deletePaquete}
+                      updPaquete={updatePaquete}
+                    />
+                  );
+                })
+              ):(
+                <h3 className="mx-auto">No hay órdenes creadas</h3>
+              )
             ):(
-              <h3 className="mx-auto">No hay órdenes creadas</h3>
+              <div className="row row-cols-1 rows-cols-md-1 row-cols-lg-1">
+                    <Update
+                      paqueteData={paqOne}
+                      updateBool={updateBool}
+                    />
+              </div>
+
             )
           }
         </div>
