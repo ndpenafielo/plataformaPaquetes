@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import {Navigate} from "react-router-dom"
+import {Navigate, useNavigate} from "react-router-dom"
 import Global from "../Global";
 
 const Inicio = () =>{
@@ -46,6 +46,8 @@ const Inicio = () =>{
     })
   }
 
+  const navigate = useNavigate();
+
   if(redirect){
     return <Navigate to="/paquetes" />
   }
@@ -71,6 +73,10 @@ const Inicio = () =>{
 
             <div className='mb-3'>
               <input className="btn btn-primary" type="submit" id="create" value="Iniciar Sesión" />
+            </div>
+
+            <div className='mb-3'>
+              <label>¿Aún no tienes una cuenta? <a className="pe-auto" onClick={() => navigate("/register")} >¡Entra Aqui!</a></label>
             </div>
           </form>
         </div>

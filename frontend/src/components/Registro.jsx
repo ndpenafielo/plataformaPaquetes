@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import {Navigate} from "react-router-dom"
+import {useNavigate} from "react-router"
 import Global from "../Global";
 
 const Registro = () =>{
@@ -11,7 +12,7 @@ const Registro = () =>{
     name: null,
     email: null,
     username: null,
-    password: null,
+    password: null
 
   });
 
@@ -30,8 +31,7 @@ const Registro = () =>{
       name: nombreRef.current.value,
       email: correoRef.current.value,
       username: userRef.current.value,
-      password: pwRef.current.value,
-
+      password: pwRef.current.value
     });
 
     console.log(nuevoUsuario)
@@ -42,16 +42,31 @@ const Registro = () =>{
     e.preventDefault();
     changeState();
     //petición http con POST
-    axios.post(url + 'register', nuevoUsuario).then( res => {
-      setRedirect(true);
-      console.log(res.data);
-    })
+    var bandera = true;
+    if (nuevoUsuario.password === pwConRef.current.value ){
+      axios.post(url + 'register', nuevoUsuario).catch( error => {
+        if (error.response){
+          console.log(error.response.data);
+          console.log(error.response.status);
+          alert(error.response.data);
+          bandera = false
+        }
+      }).then( res => {
+        setRedirect(bandera);
+        console.log(res.data);
+      })
+    } else {
+      alert("Passwords diferentes")
+    }
+
+
   }
+
+  const navigate = useNavigate();
 
   if(redirect){
     return <Navigate to="/" />
   }
-
 
   return(
     <div className='registro-usuario'>
@@ -84,6 +99,10 @@ const Registro = () =>{
 
             <div className='mb-3'>
               <input className="btn btn-primary" type="submit" id="create" value="Registrarse" />
+            </div>
+
+            <div className='mb-3'>
+              <label>¿Ya tienes una cuenta? <a className="pe-auto" onClick={() => navigate("/")} >¡Entra Aqui!</a></label>
             </div>
 
           </form>

@@ -10,13 +10,15 @@ const Router = () => {
 
   return(
     <BrowserRouter>
-      <Header />
+      <Header /> 
       <Routes>
         <Route exact path="/" element={<Inicio/>}/>
         <Route exact path="/register" element={<Registro/>}/>
+
         <Route exact path="/paquetes" element={<Paquetes/>}/>
         <Route exact path="/crearOrden" element={<New/>}/>
       </Routes>
+
     </BrowserRouter>
   )
 }
