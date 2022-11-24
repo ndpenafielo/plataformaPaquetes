@@ -2,7 +2,7 @@ POST http://localhost:3900/api/save HTTP/1.1
 Content-Type: application/json
 
 {
-    "estado": "entregado",
+    "estado": "guardado",
     "medidasLargo": 1,
     "medidasAncho": 1,
     "medidasAlto": 1,
@@ -16,24 +16,23 @@ Content-Type: application/json
     "usuario": "nick"
 }
 
-
 # POST http://localhost:3900/api/register HTTP/1.1
 # Content-Type: application/json
 
 # {
 #     "name": "nicolas",
-#     "email": "nico123@gmail.com",
-#     "username": "nico123",
+#     "email": "nico1234@gmail.com",
+#     "username": "nico1234",
 #     "password": "1234a"
 # }
 
-POST http://localhost:3900/api/login HTTP/1.1
-Content-Type: application/json
+# POST http://localhost:3900/api/login HTTP/1.1
+# Content-Type: application/json
 
-{
-    "username": "nico123",
-    "password": "1234a"
-}
+# {
+#     "username": "nico123",
+#     "password": "1234a"
+# }
 
 
 

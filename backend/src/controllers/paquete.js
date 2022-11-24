@@ -28,7 +28,7 @@ var controllerPaquete = {
             if (err || !paqueteStored){
                 return res.status(404).send({
                     status: "error",
-                    message: "El paquete no se ha guardado"
+                    message: "El paquete no se ha guardado: " + err.message
                 })
             }
             return res.status(200).send({
