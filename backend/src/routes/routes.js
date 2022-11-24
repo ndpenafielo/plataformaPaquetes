@@ -9,7 +9,7 @@ var router = express.Router();
 
 router.post('/save', Paquete.save);
 
-router.get('/paquetes', Paquete.getPaquetes);
+router.get('/paquetes/:usuario', Paquete.getPaquetes);
 
 router.delete('/delete/:id', Paquete.delete);
 

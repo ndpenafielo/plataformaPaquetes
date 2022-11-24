@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, createContext} from 'react';
 import axios from "axios";
 import {Navigate, useNavigate} from "react-router-dom"
 import Global from "../Global";
+import useAuth from './useAuth';
+
+export const AuthContext = createContext();
 
 const Inicio = () =>{
+
+  const {user, setUser} = useAuth();
+
 
   const url = Global.url;
 
@@ -42,7 +48,11 @@ const Inicio = () =>{
         bandera = false
       }
     }).then( res => {
-      setRedirect(bandera);
+      if (bandera)
+      {
+        setUser(res.data)
+        setRedirect(true);
+      }
     })
   }
 

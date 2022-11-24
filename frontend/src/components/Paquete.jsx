@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom"
 
 const Paquete = ({id, paqueteData, delPaquete, updPaquete}) => {
 
-  const { noServicio, fecha, estado, medidasLargo, medidasAncho, medidasAlto, medidasPeso, direcionRecog, ciudadRecog, nombreDest, docDest, direccionEntr, ciudadEntr } = paqueteData;
+  const { _id, fecha, estado, medidasLargo, medidasAncho, medidasAlto, medidasPeso, direcionRecog, ciudadRecog, nombreDest, docDest, direccionEntr, ciudadEntr } = paqueteData;
   const formatDate = (date) => {
     return date.substring(8, 10) + date.substring(4, 8) + date.substring(0, 4);
   }
@@ -24,7 +24,7 @@ const Paquete = ({id, paqueteData, delPaquete, updPaquete}) => {
     <div className="col">
       <div className="card mx-auto mb-3 bg-light">
         <div className="card-header">
-          <h3 className="card-title">Numero de servicio: {noServicio}</h3>
+          <h3 className="card-title">Numero de servicio: {_id}</h3>
         </div>
         <div className="card-body">
           <label className="card-text text-start"><b>Estado:</b> {estado}</label>

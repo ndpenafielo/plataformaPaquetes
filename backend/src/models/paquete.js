@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 
 var paqueteSchema = new Schema({
 
-    noServicio: {type: Number, required: true, unique: true},
     fecha: {type: Date, default:Date.now},
     estado: String,
     medidasLargo: Number,
@@ -17,7 +16,8 @@ var paqueteSchema = new Schema({
     nombreDest: String,
     docDest: String,
     direccionEntr: String,
-    ciudadEntr: String
+    ciudadEntr: String,
+    usuario: String
 })
 
 module.exports = mongoose.model('Paquete', paqueteSchema);

@@ -3,6 +3,7 @@ import axios from "axios";
 import Global from "../Global";
 import Paquete from "./Paquete";
 import Update from "./Update";
+import useAuth from "./useAuth";
 
 
 const Paquetes = () => {
@@ -12,12 +13,14 @@ const Paquetes = () => {
   const [bandera, setBandera] = useState(false);
   const url = Global.url;
 
+  const {user} = useAuth();
+
   useEffect( () => {
     getPaquetes();
   }, [paquetes.length]);
 
   const getPaquetes = () => {
-    axios.get(url + 'paquetes').then( res => {
+    axios.get(url + 'paquetes/' + user).then( res => {
       setPaquetes(res.data.paquetes);
     })
   }

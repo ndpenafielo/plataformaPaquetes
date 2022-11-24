@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import axios from "axios";
 import {Navigate} from "react-router-dom"
 import Global from "../Global";
+import useAuth from './useAuth';
 
 const Update = ({paqueteData, updateBool}) =>{
 
   const url = Global.url;
-  const { _id, noServicio, fecha, estado, medidasLargo, medidasAncho, medidasAlto, medidasPeso, direcionRecog, ciudadRecog, nombreDest, docDest, direccionEntr, ciudadEntr } = paqueteData;
-
+  const { _id, fecha, estado, medidasLargo, medidasAncho, medidasAlto, medidasPeso, direcionRecog, ciudadRecog, nombreDest, docDest, direccionEntr, ciudadEntr } = paqueteData;
+  const {user} = useAuth();
   const [paquete, setPaquete] = useState({
-    noServicio: noServicio,
+    noServicio: _id,
+    fecha: fecha,
     estado: estado,
     medidasLargo: medidasLargo,
     medidasAncho: medidasAncho,
@@ -20,7 +22,8 @@ const Update = ({paqueteData, updateBool}) =>{
     nombreDest: nombreDest,
     docDest: docDest,
     direccionEntr: direccionEntr,
-    ciudadEntr: ciudadEntr
+    ciudadEntr: ciudadEntr,
+    usuario: user
   });
 
   const [redirect, setRedirect] = useState(false);
@@ -51,7 +54,8 @@ const Update = ({paqueteData, updateBool}) =>{
       nombreDest: nomDesRef.current.value,
       docDest: docRef.current.value,
       direccionEntr: dirEntRef.current.value,
-      ciudadEntr: ciuEntRef.current.value
+      ciudadEntr: ciuEntRef.current.value,
+      usuario: user
     });
 
     console.log(paquete)
@@ -84,8 +88,13 @@ const Update = ({paqueteData, updateBool}) =>{
         <div className='card-body'>
           <form onSubmit={sendData}>
             <div className='mb-3'>
-              <label>Número de Servicio</label>
+              <h4>Número de Servicio</h4>
               <input type="text" className="form-control" id="no-servicio" name="no-servicio" ref={noSerRef} onChange={changeState}  value={paquete.noServicio} readonly="readonly"/>
+            </div>
+
+            <div className='mb-3'>
+              <label>Fecha</label>
+              <input type="text" className="form-control" id="dirección-recogida" name="dirección-recogida" ref={dirRecRef} onChange={changeState} value={paquete.fecha} readonly="readonly" />
             </div>
 
             <div className='mb-3'>

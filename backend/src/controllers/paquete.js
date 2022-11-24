@@ -11,8 +11,6 @@ var controllerPaquete = {
 
         var paquete = new Paquete()
 
-        paquete.noServicio = params.noServicio;
-        paquete.hora = params.hora;
         paquete.estado = params.estado;
         paquete.medidasLargo = params.medidasLargo;
         paquete.medidasAncho = params.medidasAncho;
@@ -24,6 +22,7 @@ var controllerPaquete = {
         paquete.docDest = params.docDest;
         paquete.direccionEntr = params.direccionEntr;
         paquete.ciudadEntr = params.ciudadEntr;
+        paquete.usuario = params.usuario;
 
         paquete.save((err, paqueteStored) => {
             if (err || !paqueteStored){
@@ -43,7 +42,8 @@ var controllerPaquete = {
     //Metodo para listar los paquetes
 
     getPaquetes: (req,res) => {
-        var query = Paquete.find({});
+        var usuario = req.params.usuario;
+        var query = Paquete.find({usuario});
 
         query.sort('-date').exec((err,paquetes) => {
             if (err) {
@@ -102,7 +102,6 @@ var controllerPaquete = {
 
         Paquete.findByIdAndUpdate({_id: paqueteId}, {
 
-            noServicio: req.body.noServicio,
             estado: req.body.estado,
             medidasLargo: req.body.medidasLargo,
             medidasAncho: req.body.medidasAncho,

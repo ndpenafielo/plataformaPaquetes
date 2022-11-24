@@ -2,13 +2,15 @@ import React, {useState} from 'react';
 import axios from "axios";
 import {Navigate} from "react-router-dom"
 import Global from "../Global";
+import useAuth from './useAuth';
 
 const New = () =>{
 
   const url = Global.url;
+  const {user} = useAuth();
 
   const [paquete, setPaquete] = useState({
-    noServicio: null,
+
     estado: null,
     medidasLargo: null,
     medidasAncho: null,
@@ -19,12 +21,13 @@ const New = () =>{
     nombreDest: null,
     docDest: null,
     direccionEntr: null,
-    ciudadEntr: null
+    ciudadEntr: null,
+    usuario: user
   });
 
   const [redirect, setRedirect] = useState(false);
 
-  let noSerRef = React.createRef();
+
   let estadoRef = React.createRef();
   let largoRef = React.createRef();
   let altoRef = React.createRef();
@@ -39,7 +42,7 @@ const New = () =>{
 
   const changeState = () => {
     setPaquete({
-      noServicio: noSerRef.current.value,
+
       estado: estadoRef.current.value,
       medidasLargo: largoRef.current.value,
       medidasAncho: anchoRef.current.value,
@@ -50,7 +53,8 @@ const New = () =>{
       nombreDest: nomDesRef.current.value,
       docDest: docRef.current.value,
       direccionEntr: dirEntRef.current.value,
-      ciudadEntr: ciuEntRef.current.value
+      ciudadEntr: ciuEntRef.current.value,
+      usuario: user
     });
 
     console.log(paquete)
@@ -60,6 +64,7 @@ const New = () =>{
     //evitamos que al recibir datos se recarge la pantalla
     e.preventDefault();
     changeState();
+    console.log(paquete);
     //petición http con POST
     axios.post(url + 'save', paquete).then( res => {
       setRedirect(true);
@@ -80,10 +85,6 @@ const New = () =>{
         </div>
         <div className='card-body'>
           <form onSubmit={sendData}>
-            <div className='mb-3'>
-              <label>Número de Servicio</label>
-              <input type="text" className="form-control" id="no-servicio" name="no-servicio" ref={noSerRef} onChange={changeState} required/>
-            </div>
 
             <div className='mb-3'>
               <label for="exampleDataList" class="form-label">Estado</label>

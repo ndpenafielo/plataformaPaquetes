@@ -38,7 +38,7 @@ var controllerUser = {
                     if(err){
                         res.status(500).send('Error al Autenticar')
                     }else if(result){
-                        res.status(200).send('Usuario Autenticado')
+                        res.status(200).send(username)
                     }else {
                         res.status(500).send('Usuario y/o Contraseña Incorrecta')
                     }
