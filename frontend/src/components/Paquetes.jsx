@@ -52,6 +52,12 @@ const Paquetes = () => {
             !bandera ? (
               paquetes.length > 0 ?  (
                 paquetes.map((paquete, i) => {
+                  const fecha = new Date(paquete.fecha)
+                  const fechaActual = new Date(Date.now())
+                  if((fechaActual-fecha)/1000/60/60>24 && paquete.estado === "Guardado")
+                    {
+                      paquete.estado = "Completado"
+                    }
                   return(
                     <Paquete
                       key={i}

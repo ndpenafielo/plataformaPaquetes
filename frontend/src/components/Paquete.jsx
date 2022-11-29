@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
 
 const Paquete = ({id, paqueteData, delPaquete, updPaquete}) => {
 
@@ -17,7 +16,7 @@ const Paquete = ({id, paqueteData, delPaquete, updPaquete}) => {
   }
 
   const upd = () => {
-    updPaquete(id, true);
+    updPaquete(id);
   }
 
   return(
