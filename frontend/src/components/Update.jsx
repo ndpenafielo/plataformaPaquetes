@@ -63,8 +63,8 @@ const Update = ({paqueteData, updateBool}) =>{
 
   const sendData = (e) => {
     //evitamos que al recibir datos se recarge la pantalla
-
-    e.changeState();
+    changeState();
+    e.preventDefault();
     //petición http con POST
     axios.post(url + 'update/' + _id , paquete).then( res => {
       setRedirect(true);

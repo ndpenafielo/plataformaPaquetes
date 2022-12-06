@@ -39,7 +39,8 @@ const Paquetes = () => {
   }
 
   const updateBool = (band) => {
-     setBandera(false)
+     setBandera(band)
+     getPaquetes();
   }
 
   return (
